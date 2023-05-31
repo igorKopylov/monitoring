@@ -1,0 +1,37 @@
+.settings {
+    width: calc(100vw - 302px);
+    margin-left: 302px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F2F2F2;
+
+    .settings__content {
+
+        .label-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 17px;
+            margin-top: 33px;
+            
+            input {
+                display: none;
+            }
+
+            .custom-checkbox {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 22px;
+                height: 22px;
+                border: 2px solid #292D32;
+                border-radius: 8px;
+            }
+        }
+
+        button {
+            margin-top: 36px;
+        }
+    }
+}
