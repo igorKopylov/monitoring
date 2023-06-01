@@ -9,45 +9,45 @@ import Logout from './assets/Logout.svg';
 export const getLefBarItems = (isAdmin) => {
     const leftBarItems = [
         {
+            id: 0,
             title: 'Температура',
-            svg: Temperature,
             value: 'temperature',
             pageUrl: '/'
         },
         {
+            id: 1,
             title: 'Влажности',
-            svg: Drop,
             value: 'humidity',
             pageUrl: '/'
         },
         {
+            id: 2,
             title: 'Шум',
-            svg: Noise,
             value: 'noise',
             pageUrl: '/'
         },
         {
+            id: 3,
             title: 'Задымленность',
-            svg: Smoke,
             value: 'smoke',
             pageUrl: '/'
         },
         {
+            id: 4,
             title: 'Настройки',
-            svg: lightGear,
             pageUrl: '/settings',
         },
         {
+            id: 5,
             title: 'Выйти',
             value: 'logout',
-            svg: Logout
         }
     ]
 
     if (isAdmin) {
         leftBarItems.splice(-2, 0, {
+            id: leftBarItems[leftBarItems.length - 1] + 1,
             title: 'Пользователи',
-            svg: People,
             value: 'users',
             pageUrl: '/users'
         })

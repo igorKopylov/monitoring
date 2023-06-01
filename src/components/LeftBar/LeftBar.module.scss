@@ -10,12 +10,13 @@
     padding: 26px 0;
     background-color: #27313A;
 
-    .item {
-        display: flex;
-        align-items: center;
-        padding: 10px 0 14px 32px;
-        cursor: pointer;
-        transition: .2s;
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 10px 0 14px 32px;
+            cursor: pointer;
+            transition: .2s;
 
         &:hover {
             background-color: #4a667e;
@@ -24,10 +25,30 @@
         img {
             margin-right: 16px;
         }
-
+        
         span {
             color: #fff;
             font-size: 22px;
         }
-    }
+        }
+        
+        .sensors {
+            padding: 5px 0 7px 32px;
+            cursor: pointer;
+
+            h4 {
+                margin-left: 20px;
+                color: #fff;
+            }
+
+            &:hover {
+                background-color: #4a667e;
+            }
+
+            .sensors__item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+        }
 }

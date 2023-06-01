@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import SensorsBar from './../SensorsBar/SensorsBar';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSensors } from './../../services/SensorService';
 import { setSensors } from './../../store/reducer';
@@ -12,17 +11,16 @@ const Controllers = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        getSensors(leftBarActive)
-            .then(data => {
-                console.log('sensors', data)
-                dispatch(setSensors(data.data))
-            })
-            .catch(err => console.log(err))
+        // getSensors(leftBarActive)
+        //     .then(data => {
+        //         console.log('sensors', data)
+        //         dispatch(setSensors(data.data))
+        //     })
+        //     .catch(err => console.log(err))
     }, [leftBarActive])
 
     return (
         <div className={styles.controllers}>
-            <SensorsBar />
             <div className={styles.controllers__image}>
                 <img src={darkGear} alt='settings' />
             </div>

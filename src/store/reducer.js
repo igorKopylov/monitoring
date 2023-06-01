@@ -1,7 +1,15 @@
 const initialState = {
     isAuth: Boolean(localStorage.getItem('token')),
     leftBarActive: 'temperature',
-    sensors: [],
+    sensors: [{
+        name: "Датчик 1",
+        min_temperature: 0,
+        max_temperature: 0,
+    }, {
+        name: "Датчик 2",
+        min_temperature: 0,
+        max_temperature: 0,
+    }],
     sensorId: 0
 }
 
@@ -19,6 +27,7 @@ const reducer = (state = initialState, action) => {
         case SET_SENSORS:
             return { ...state, sensors: action.payload }
         case SET_ACTIVE_SENSOR:
+            console.log('payload', action.payload)
             return { ...state, sensorId: action.payload }
         default:
             return state

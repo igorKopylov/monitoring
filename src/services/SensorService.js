@@ -3,11 +3,12 @@ import $api from "../http"
 export const getSensors = async (controller) => {
     const tokenFromLS = localStorage.getItem('token')
     console.log('token', tokenFromLS)
-    const data = await $api.get(`/api/v1/sensor/${controller}/all`, {
+    const data = await $api.get(`/api/v1/sensor/categories/${controller}`, {
         headers: {
             Authorization: `Bearer ${tokenFromLS}`
         }
     })
+    console.log('sensors 2', data)
     return data
 }
 

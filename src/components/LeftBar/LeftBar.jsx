@@ -3,13 +3,14 @@ import styles from './LeftBar.module.scss';
 import { getLefBarItems } from './../../constants';
 import { getSecurity, getSensors } from './../../services/SensorService';
 import { useNavigate } from 'react-router';
-import { useDispatch } from 'react-redux';
-import { setIsAuth, setLefBarActive } from '../../store/reducer';
-import { setSensors } from './../../store/reducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { setActiveSensor, setIsAuth, setLefBarActive, setSensors } from '../../store/reducer';
+import ArrowRight from '../../assets/ArrowRight.svg';
 
 const LeftBar = () => {
     const [isAdmin, setIsAdmin] = useState(null)
-    const leftBarItems = getLefBarItems(isAdmin)
+    const leftBarItems = getLefBarItems(isAdmin);
+    const { sensors, leftBarActive, sensorId } = useSelector(state => state)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -20,8 +21,10 @@ const LeftBar = () => {
                 setIsAdmin(data.data.authorities.includes('ADMIN'))
             })
             .catch(err => console.log(err))
+        setActiveSensor(1)
     }, [])
-
+    console.log(setActiveSensor(1))
+    console.log(leftBarItems)
     const onClickTopItem = (value) => {
         dispatch(setLefBarActive(value))
         navigate('/')
@@ -36,21 +39,38 @@ const LeftBar = () => {
         }
         navigate(pageUrl)
     }
-
+    console.log('sensorId', sensorId)
     return (
         <div>
             <div className={styles['left-bar']}>
                 <div className={styles['left-bar__top']}>
                     {leftBarItems.slice(0, 4).map((item, i) => {
                         return (
-                            <div
-                                key={i}
-                                onClick={() => onClickTopItem(item.value)}
-                                className={styles['item']}
-                            >
-                                <img src={item.svg} alt='icon' />
-                                <span>{item.title}</span>
-                            </div>
+                            <>
+                                <div
+                                    key={i}
+                                    onClick={() => onClickTopItem(item.value)}
+                                    className={styles['item']}
+                                >
+                                    <span>{item.title}</span>
+                                    {leftBarActive === item.value && <img
+                                        src={ArrowRight}
+                                        alt='arrow down'
+                                        style={{ transform: 'rotate(90deg)' }}
+                                    />}
+                                </div>
+                                {leftBarActive === item.value && sensors.map((obj, i) => {
+                                    console.log('i', i)
+                                    return (
+                                        <div className={styles['sensors']}>
+                                            <div className={styles.sensors__item} onClick={() => setActiveSensor(i)}>
+                                                <h4>{obj.name}</h4>
+                                                {sensorId === i && <img width={12} height={12} src={ArrowRight} alt='arrow right' />}
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                            </>
                         )
                     })}
                 </div>
@@ -62,7 +82,6 @@ const LeftBar = () => {
                                 onClick={() => onClickBottomItem(item.value, item.pageUrl)}
                                 className={styles['item']}
                             >
-                                <img src={item.svg} alt='icon' />
                                 <span>{item.title}</span>
                             </div>
                         )
