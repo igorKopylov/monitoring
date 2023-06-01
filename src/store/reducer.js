@@ -1,5 +1,5 @@
 const initialState = {
-    isAuth: Boolean(localStorage.getItem('token')),
+    isAuth: null,
     leftBarActive: 'temperature',
     sensors: [{
         name: "Датчик 1",
